@@ -32,19 +32,21 @@ class User(db.Model):
     def validate_name(self, key, name):
         # Checking if the field we are validating is correct
         if key == "fname":
-            field_name = "First Name"
+            field_name = "First name"
         elif key == "lname":
-            field_name = "Last Name"
+            field_name = "Last name"
         else:
             raise ValueError("Invalid field")
 
         # Validating if the name has more than 2 characters and no numbers
         name_has_nums = bool(re.search(r"\d", name))
 
-        if len(name) < 2:
+        if key == "fname" and len(name) < 2:
             raise ValueError(f"{field_name} needs to have atleast 2 characters")
         elif name_has_nums == True:
             raise ValueError(f"{field_name} cannot have digits in it")
+
+        return name
 
     # Validating user's email-id
     @validates("email")
@@ -59,6 +61,7 @@ class User(db.Model):
     def validate_password(self, key, password):
         if len(password) < 12:
             raise ValueError("Password must have atleast 12 characters")
+        return password
 
     # Object representation
     def __repr__(self):
