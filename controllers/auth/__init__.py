@@ -3,3 +3,5 @@ from .login.post import *
 
 from .register.get import *
 from .register.post import *
+
+from .logout.post import *

@@ -16,7 +16,6 @@ def login_post_controller(request):
             raise ValueError(f"Password doesn't match, please try again")
 
         session.update({"id": user.id, "email": email})
-
         return redirect("/")
 
     except Exception as error:

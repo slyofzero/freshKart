@@ -1,0 +1,44 @@
+<header class="d-flex container-fluid justify-content-between bg-dark px-5 py-2">
+    <section class="d-flex align-items-center">
+        <h3 class="text-white d-flex align-items-center mb-0">
+            <a href="/" class="link-underline font-weight-bold link-underline-opacity-0 text-white">
+                freshKart
+            </a>
+        </h3>
+
+    </section>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark">
+        <ul class="navbar-nav mr-auto dflex gap-3">
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categories
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/veges">Fruits and Veges</a></li>
+                        <li><a class="dropdown-item" href="/dairy">Dairy</a></li>
+                        <li><a class="dropdown-item" href="/meat">Fish and Meat</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav> -->
+
+    <div class="d-flex align-items-center">
+        {% include "components/search.html" %}
+
+        <section class="ml-auto d-flex align-items-center gap-4">
+            {% if user_is_logged_in %}
+            <form action="/auth/logout" method="post" class="d-flex align-items-center gap-4">
+                <a href="/cart" class="btn btn-secondary">Cart</a>
+                <button class="btn btn-primary">Logout</button>
+            </form>
+            {% else %}
+            <a href="/auth/login" class="btn btn-primary">Login</a>
+            <a href="/auth/register" class="btn btn-secondary">Register</a>
+            {% endif %}
+        </section>
+    </div>
+</header>

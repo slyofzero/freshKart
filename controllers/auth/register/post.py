@@ -32,4 +32,4 @@ def register_post_controller(request):
         if "UNIQUE constraint failed: user.email" in error_msg:
             error_msg = "Email ID already in use"
 
-        return render_template("auth/register.html", error=error_msg)
+        return render_template("auth/register.html", error_msg=error_msg)

@@ -18,6 +18,14 @@ with app.app_context():
     db.init_app(app=app)
 
 
+# Shared variables
+@app.context_processor
+def inject_variable():
+    user_is_logged_in = "id" in session
+
+    return {"user_is_logged_in": user_is_logged_in}
+
+
 # App routes
 @app.route("/")
 def index():

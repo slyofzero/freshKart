@@ -4,6 +4,7 @@ from controllers.auth import (
     login_post_controller,
     register_get_controller,
     register_post_controller,
+    logout_post_controller,
 )
 
 auth_bp = Blueprint(
@@ -33,3 +34,9 @@ def register():
 
     elif method == "POST":
         return register_post_controller(request)
+
+
+# For logging out
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    return logout_post_controller()
