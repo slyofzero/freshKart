@@ -6,3 +6,4 @@ load_dotenv()
 
 class Config:
     DATABASE_URI = os.environ.get("DATABASE_URI")
+    SECRET_KEY = os.environ.get("SECRET_KEY")

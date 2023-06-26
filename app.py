@@ -1,12 +1,16 @@
 from flask import *
 from config import Config
 from routes import category_bp, auth_bp
-
+from datetime import timedelta
 from models import db
 
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = Config.DATABASE_URI
+
+# Setting up user session params
+app.secret_key = Config.SECRET_KEY
+app.permanent_session_lifetime = timedelta(days=30)
 
 
 # Initiating app for SQLAlchemy and creating database
