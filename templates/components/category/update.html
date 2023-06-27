@@ -1,21 +1,18 @@
 {% if user_is_admin %}
-<div data-bs-toggle="modal" data-bs-target="#createCategoryModal">
-    <div data-bs-toggle="modal" data-bs-target="#createCategoryModal">
-        <button type="button" class="btn fixed-button btn-primary btn-floating"
-            style="position: fixed; bottom: 100px; right: 200px;">
-            &#10010;
-        </button>
+<div data-bs-toggle="modal" data-bs-target="#updateCategoryModal{{index}}">
+    <div data-bs-toggle="modal" data-bs-target="#updateCategoryModal{{index}}">
+        <button class="btn btn-primary edit-btn">Edit</button>
     </div>
 </div>
 {% endif %}
 
-<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel"
+<div class="modal fade" id="updateCategoryModal{{index}}" tabindex="-1" aria-labelledby="updateCategoryModalLabel"
     aria-hidden="true">
     <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
         <div class="modal-content">
-            <form action="/categories" method="post">
+            <form action="/category/{{category_name}}/update" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createCategoryModalLabel">Create Category</h5>
+                    <h5 class="modal-title" id="updateCategoryModalLabel">Update {{category_name}} Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -26,7 +23,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create Category</button>
+                    <button type="submit" class="btn btn-primary">Update Category</button>
                 </div>
             </form>
         </div>
