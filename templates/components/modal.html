@@ -1,0 +1,13 @@
+<div data-bs-toggle="modal" data-bs-target="#categoryModal">
+    {% block modalTrigger %}
+    {% endblock %}
+</div>
+
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
+        <div class="modal-content">
+            {% block modalBody %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

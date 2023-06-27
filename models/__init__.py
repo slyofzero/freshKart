@@ -7,4 +7,6 @@ import re
 db = SQLAlchemy()
 
 from .user import User
-from .product import Product
+from .category import Category
+from .product import Product, ProductRateTypes
+from .cart import Cart

@@ -15,10 +15,12 @@ class User(db.Model):
     lname = db.Column(db.String(200), nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
-    role = db.Column(db.Enum(UserRoles), default=UserRoles.USER)
+    role = db.Column(db.Enum(UserRoles), default=UserRoles.USER.value)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(
+        db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow()
+    )
 
     # Hashing user passwords
     def set_password(self):

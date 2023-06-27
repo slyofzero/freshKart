@@ -1,0 +1,27 @@
+{% extends "./layouts/base.html" %}
+{% from "components/category/delete.html" import delete_category %}
+
+{% block head %}
+<title>Categories</title>
+{% endblock %}
+
+{% block body %}
+<main>
+    {% for category in categories %}
+    <div class="rounded d-flex justify-content-between align-items-center bg-light p-4 mb-3 border border-secondary"
+        style="max-width: 700px; margin: 0 auto;">
+        <a href="/category/{{category.name}}">{{ category.name }}</a>
+
+        {% if user_is_admin %}
+        <div class="d-flex gap-3">
+            {% include "components/category/delete.html" %}
+            <button class="btn btn-primary edit-btn">Edit</button>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% include "components/category/create.html" %}
+</main>
+
+{% endblock %}
