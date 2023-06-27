@@ -1,4 +1,7 @@
-def flatten_dict_values(values):
-    flat = tuple(map(lambda item: item[0], values))
+from datetime import datetime
 
-    return flat
+
+def to_datetime(date_string):
+    datetime_obj = datetime.strptime(date_string, "%Y-%m-%d")
+
+    return datetime_obj

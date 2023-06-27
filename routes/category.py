@@ -1,5 +1,4 @@
 from flask import Blueprint, request, redirect
-from routes import product_bp
 from controllers.category import (
     category_get_controller,
     category_delete_controller,
@@ -20,10 +19,6 @@ def index():
 @category_bp.route("/<category>", methods=["GET"])
 def category_name(category):
     return category_get_controller(category=category, request=request)
-
-
-# # Route logic for /<category>/<product>
-# category_bp.register_blueprint(product_bp, url_prefix="/<product>")
 
 
 # Routes for deleting a category

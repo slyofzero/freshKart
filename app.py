@@ -1,6 +1,6 @@
 from flask import *
 from config import Config
-from routes import categories_bp, auth_bp, category_bp
+from routes import categories_bp, auth_bp, category_bp, product_bp
 from datetime import timedelta
 from models import db
 
@@ -39,6 +39,7 @@ def index():
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(categories_bp, url_prefix="/categories")
 app.register_blueprint(category_bp, url_prefix="/category")
+app.register_blueprint(product_bp, url_prefix="/product")
 
 # Only run the app when this file is executed
 if __name__ == "__main__":
