@@ -1,10 +1,11 @@
-from flask import session, redirect
+from flask import render_template, session, redirect, request
 from models import Product, db, Category
+from PIL import Image
 from utils import to_datetime
 import os
 
 
-def product_post_controller(request):
+def product_update_controller(product_id, request):
     try:
         if session["role"] != "ADMIN":
             raise Exception(f"Only admins can create a new product")
@@ -21,7 +22,7 @@ def product_post_controller(request):
             rate,
         ) = body.values()
 
-        newest_product = Product.query.order_by(Product.id.desc()).first()
+        product = Product.query.filter_by(id=product_id).first()
         product_category = Category.query.filter_by(id=category).first()
 
         image = request.files["image"]
@@ -35,28 +36,20 @@ def product_post_controller(request):
             image_path = os.path.join(upload_dir, filename)
             image.save(image_path)
 
-        if newest_product:
-            new_product_id = newest_product.id + 1
-        else:
-            new_product_id = 0
+        if product:
+            product.name = name
+            product.description = description
+            product.image = f"/{image_path}"
+            product.manufacture_date = to_datetime(manufacture_date)
+            product.expiry_date = to_datetime(expiry_date)
+            product.stock = int(stock)
+            product.price = float(price)
+            product.rate = rate
+            product.category = int(category)
 
-        new_product = Product(
-            id=new_product_id,
-            name=name,
-            description=description,
-            image=f"/{image_path}",
-            manufacture_date=to_datetime(manufacture_date),
-            expiry_date=to_datetime(expiry_date),
-            stock=int(stock),
-            price=float(price),
-            rate=rate,
-            category=int(category),
-        )
-        db.session.add(new_product)
-        db.session.commit()
+            db.session.commit()
 
         return redirect(f"/category/{product_category.name}")
 
     except Exception as error:
-        print(error)
         return redirect("/")

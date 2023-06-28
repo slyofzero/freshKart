@@ -1,0 +1,28 @@
+{% if user_is_admin %}
+<div data-bs-toggle="modal" data-bs-target="#deleteProductModal{{product.id}}">
+    <div data-bs-toggle="modal" data-bs-target="#deleteProductModal{{product.id}}">
+        <button class="btn btn-danger edit-btn">Delete</button>
+    </div>
+</div>
+{% endif %}
+
+<div class="modal fade" id="deleteProductModal{{product.id}}" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
+        <div class="modal-content">
+            <form action="/product/{{ product.id }}/delete" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProductModalLabel">Delete Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <h5 class="modal-body">Are you sure you want to delete the {{product.name}} product?</h5>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(200), nullable=False)
-    image = db.Column(db.BLOB, nullable=False)
+    image = db.Column(db.String(200), nullable=False)
     manufacture_date = db.Column(db.DateTime, nullable=False)
     expiry_date = db.Column(db.DateTime, nullable=False)
     stock = db.Column(db.Integer, nullable=False)

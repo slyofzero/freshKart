@@ -1,0 +1,87 @@
+{% if user_is_admin %}
+<div data-bs-toggle="modal" data-bs-target="#editProductModal{{product.id}}">
+    <div data-bs-toggle="modal" data-bs-target="#editProductModal{{product.id}}">
+        <button class="btn btn-primary edit-btn">Edit</button>
+    </div>
+</div>
+{% endif %}
+
+<div class="modal fade" id="editProductModal{{product.id}}" tabindex="-1" aria-labelledby="editProductModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 140vh;">
+        <div class="modal-content">
+            <form action="/product/{{product.id}}/update" method="post" id="product-form"
+                class="p-4 bg-light rounded border border-secondary" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">
+                        Edit Product
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" value="{{product.name}}" id="name"
+                            class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" class="form-control form-control-lg"
+                            required>{{product.description}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product" class="form-label">Product</label>
+                        <select name="product" value="{{product.id}}" id="product" class="form-select form-select-lg"
+                            required>
+                            <option value="" disabled selected>Select a product</option>
+                            {% for product in categories%}
+                            <option value="{{product.id}}">{{product.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" value={{product.image}} name="image" id="image"
+                            class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="manufacture_date" class="form-label">Manufacture Date</label>
+                        <input type="date" value={{product.manufacture_date}} name="manufacture_date"
+                            id="manufacture_date" class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <input type="date" value={{product.expiry_date}} name="expiry_date" id="expiry_date"
+                            class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" value={{product.stock}} min="1" step="1" name="stock" id="stock"
+                            class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" value={{product.price}} name="price" id="price"
+                            class="form-control form-control-lg" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="rate" class="form-label">Price Type</label>
+                        <select name="rate" id="rate" value={{product.rate}} class="form-select form-select-lg"
+                            required>
+                            {% for rate in rates%}
+                            <option value="{{rate}}">{{rate}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Edit Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

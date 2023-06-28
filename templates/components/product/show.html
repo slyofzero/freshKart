@@ -1,0 +1,21 @@
+<div class="card mx-auto" style="width: 18rem;">
+    <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+    <div class="card-body d-flex justify-content-between">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">Stock: {{product.stock}}</p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <form action="/cart/{{ product.id }}/" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-secondary">Cart</button>
+        </form>
+
+        {% if user_is_admin %}
+        <div class="d-flex gap-2">
+            <!-- <form action="/products{{ product.id }}/update" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form> -->
+            {% include "components/product/delete.html" %}{% include "components/product/update.html" %}
+        </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,27 +1,29 @@
 {% if user_is_admin %}
 <div data-bs-toggle="modal" data-bs-target="#createProductModal">
     <div data-bs-toggle="modal" data-bs-target="#createProductModal">
-        <button type="button" class="btn fixed-button btn-primary btn-floating"
-            style="position: fixed; bottom: 100px; right: 200px;">
-            &#10010;
+        <button type="button" class="btn d-flex gap-2 fixed-button btn-primary btn-floating">
+            <span>&#10010;</span> Add product
         </button>
     </div>
 </div>
+{% endif %}
 
 <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog d-flex align-items-center" style="height: 140vh;">
+    <div class="modal-dialog d-flex align-items-center" style="height: 140vh">
         <div class="modal-content">
-            <form action="/product" method="post" id="product-form"
-                class="p-4 bg-light rounded border border-secondary">
+            <form action="/product" method="post" id="product-form" class="p-4 bg-light rounded border border-secondary"
+                enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createProductModalLabel">Create Product</h5>
+                    <h5 class="modal-title" id="createProductModalLabel">
+                        Create Product
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" id="name" class="form-control form-control-lg" required>
+                        <input type="text" name="name" id="name" class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
@@ -39,26 +41,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="text" name="image" id="image" class="form-control form-control-lg" required>
+                        <input type="file" name="image" id="image" class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
                         <label for="manufacture_date" class="form-label">Manufacture Date</label>
                         <input type="date" name="manufacture_date" id="manufacture_date"
-                            class="form-control form-control-lg" required>
+                            class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
                         <label for="expiry_date" class="form-label">Expiry Date</label>
                         <input type="date" name="expiry_date" id="expiry_date" class="form-control form-control-lg"
-                            required>
+                            required />
                     </div>
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock</label>
                         <input type="number" min="1" step="1" name="stock" id="stock"
-                            class="form-control form-control-lg" required>
+                            class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" name="price" id="price" class="form-control form-control-lg" required>
+                        <input type="number" name="price" id="price" class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
                         <label for="rate" class="form-label">Price Type</label>
@@ -71,9 +73,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
                     <button type="submit" class="btn btn-primary">Create Product</button>
                 </div>
+            </form>
         </div>
     </div>
-    {% endif %}
+</div>
