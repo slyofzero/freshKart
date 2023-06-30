@@ -8,5 +8,5 @@ db = SQLAlchemy()
 
 from .user import User
 from .category import Category
-from .product import Product, ProductRateTypes
-from .cart import Cart
+from .product import Product, ProductRateTypes, ProductStatus
+from .cart import Cart, UnitTypes

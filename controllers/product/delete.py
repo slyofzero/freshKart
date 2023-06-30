@@ -1,5 +1,7 @@
 from flask import redirect, session
 from models import db, Product, Category
+import os
+from config import root_dir
 
 
 def product_delete_controller(product_id, request):
@@ -9,6 +11,9 @@ def product_delete_controller(product_id, request):
 
         product = Product.query.filter_by(id=product_id).first()
         category = Category.query.filter_by(id=product.category).first()
+        image = f"{root_dir}{product.image}"
+
+        os.remove(image)
 
         if product:
             db.session.delete(product)

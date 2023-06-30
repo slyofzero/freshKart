@@ -1,5 +1,5 @@
 from flask import session, redirect
-from models import Product, db, Category
+from models import Product, db, Category, ProductStatus, ProductRateTypes
 from utils import to_datetime
 import os
 
@@ -20,6 +20,8 @@ def product_post_controller(request):
             price,
             rate,
         ) = body.values()
+        stock = int(stock)
+        rate = eval(rate)
 
         newest_product = Product.query.order_by(Product.id.desc()).first()
         product_category = Category.query.filter_by(id=category).first()
@@ -40,6 +42,14 @@ def product_post_controller(request):
         else:
             new_product_id = 0
 
+        # Added a status for product on creation
+        if stock == 0:
+            status = ProductStatus.SOLD_OUT
+        elif stock < 10:
+            status = ProductStatus.RUNNING_OUT
+        else:
+            status = ProductStatus.AVAILABLE
+
         new_product = Product(
             id=new_product_id,
             name=name,
@@ -51,6 +61,7 @@ def product_post_controller(request):
             price=float(price),
             rate=rate,
             category=int(category),
+            status=status,
         )
         db.session.add(new_product)
         db.session.commit()

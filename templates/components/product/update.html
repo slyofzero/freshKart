@@ -30,12 +30,12 @@
                             required>{{product.description}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="product" class="form-label">Product</label>
-                        <select name="product" value="{{product.id}}" id="product" class="form-select form-select-lg"
+                        <label for="category" class="form-label">Category</label>
+                        <select name="category" value="{{category.id}}" id="category" class="form-select form-select-lg"
                             required>
-                            <option value="" disabled selected>Select a product</option>
-                            {% for product in categories%}
-                            <option value="{{product.id}}">{{product.name}}</option>
+                            <option value="" disabled selected>Select a category</option>
+                            {% for category in categories_list%}
+                            <option value="{{category.id}}">{{category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock</label>
-                        <input type="number" value={{product.stock}} min="1" step="1" name="stock" id="stock"
+                        <input type="number" value={{product.stock}} min="0" step="1" name="stock" id="stock"
                             class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
@@ -68,8 +68,8 @@
                         <label for="rate" class="form-label">Price Type</label>
                         <select name="rate" id="rate" value={{product.rate}} class="form-select form-select-lg"
                             required>
-                            {% for rate in rates%}
-                            <option value="{{rate}}">{{rate}}</option>
+                            {% for rate in rates_list%}
+                            <option value="{{rate}}">{{rate.value}}</option>
                             {% endfor %}
                         </select>
                     </div>

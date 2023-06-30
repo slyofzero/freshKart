@@ -34,7 +34,7 @@
                         <label for="category" class="form-label">Category</label>
                         <select name="category" id="category" class="form-select form-select-lg" required>
                             <option value="" disabled selected>Select a category</option>
-                            {% for category in categories%}
+                            {% for category in categories_list%}
                             <option value="{{category.id}}">{{category.name}}</option>
                             {% endfor %}
                         </select>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock</label>
-                        <input type="number" min="1" step="1" name="stock" id="stock"
+                        <input type="number" min="0" step="1" name="stock" id="stock"
                             class="form-control form-control-lg" required />
                     </div>
                     <div class="mb-3">
@@ -65,8 +65,8 @@
                     <div class="mb-3">
                         <label for="rate" class="form-label">Price Type</label>
                         <select name="rate" id="rate" class="form-select form-select-lg" required>
-                            {% for rate in rates%}
-                            <option value="{{rate}}">{{rate}}</option>
+                            {% for rate in rates_list%}
+                            <option value="{{rate}}">{{rate.value}}</option>
                             {% endfor %}
                         </select>
                     </div>

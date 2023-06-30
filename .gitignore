@@ -6,5 +6,4 @@ env/
 
 # Include the css folder
 !/static/css/
-
-/instance/
+/instance/freshkart.db

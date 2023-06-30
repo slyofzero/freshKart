@@ -1,0 +1,40 @@
+{% if user_is_admin %}
+<div data-bs-toggle="modal" data-bs-target="#cartModal{{product.id}}">
+    <div data-bs-toggle="modal" data-bs-target="#cartModal{{product.id}}">
+        <button class="btn btn-secondary">Cart</button>
+    </div>
+</div>
+{% endif %}
+
+<div class="modal fade" id="cartModal{{product.id}}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
+        <div class="modal-content">
+            <form action="/cart" method="post" id="cart-form" class="p-4 bg-light rounded border border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">
+                        Add to Cart
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Product: {{ product.name }}</h5>
+                    <input type="number" value="{{product.id}}" name="id" id="product-id" style="display: none;">
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label d-flex justify-content-between">
+                            <h5>Quantity</h5>
+                            <h5>In stock : {{product.stock}}</h5>
+                        </label>
+                        <input type="number" name="quantity" id="quantity" class="form-control form-control-lg" required
+                            min="1" max="{{product.stock}}" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

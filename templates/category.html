@@ -5,15 +5,14 @@
 {% endblock %}
 
 {% block body %}
-<main class="d-flex gap-3 flex-column">
-    {% if products %}
+<main class="d-flex gap-3 flex-column pb-5">
     <div class="d-flex justify-content-between align-items-center px-5">
         <h1>{{category.name}}</h1>
 
         {% include "components/product/create.html" %}
-
     </div>
 
+    {% if products %}
     <div class="row row-cols-4 g-4 px-4">
         {% for product in products %}
         <div class="col">
@@ -23,7 +22,7 @@
     </div>
 
     {% else %}
-    <div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
         <div class="alert d-flex flex-column gap-3 alert-danger text-center p-5" role="alert" role="alert"
             style="max-width: 500px">
             <h4>No products were found for the category <strong>{{ category.name }}</strong>.</h4>

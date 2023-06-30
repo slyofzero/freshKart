@@ -1,6 +1,5 @@
-from flask import render_template, session, redirect, request
-from models import Product, db, Category
-from PIL import Image
+from flask import session, redirect
+from models import Product, db, Category, ProductStatus, ProductRateTypes
 from utils import to_datetime
 import os
 
@@ -21,6 +20,16 @@ def product_update_controller(product_id, request):
             price,
             rate,
         ) = body.values()
+        stock = int(stock)
+        rate = eval(rate)
+
+        # Added a status for product on updation
+        if stock == 0:
+            status = ProductStatus.SOLD_OUT
+        elif stock < 10:
+            status = ProductStatus.RUNNING_OUT
+        else:
+            status = ProductStatus.AVAILABLE
 
         product = Product.query.filter_by(id=product_id).first()
         product_category = Category.query.filter_by(id=category).first()
@@ -44,12 +53,14 @@ def product_update_controller(product_id, request):
             product.expiry_date = to_datetime(expiry_date)
             product.stock = int(stock)
             product.price = float(price)
-            product.rate = rate
             product.category = int(category)
+            product.status = status
+            product.rate = rate
 
             db.session.commit()
 
         return redirect(f"/category/{product_category.name}")
 
     except Exception as error:
+        print(error)
         return redirect("/")

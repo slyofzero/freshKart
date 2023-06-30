@@ -1,0 +1,34 @@
+{% extends "./layouts/base.html" %}
+
+{% block head %}
+<title>Cart</title>
+{% endblock %}
+
+{% block body %}
+<main>
+    <h1 class="px-5 mb-4">Cart</h1>
+    {% if carts_list|length > 0 %}
+    {% for cart_data in carts_list %}
+    {% set product_name, product_id, index = cart_data["product_name"], cart_data["product_id"], loop.index %}
+    <div class="rounded d-flex justify-content-between align-items-center bg-light p-4 mb-3 border border-secondary"
+        style="max-width: 700px; margin: 0 auto;">
+        <a href="/product/{{product_id}}">{{ product_name }}</a>
+
+        <div class="d-flex gap-3">
+            <div>{% include "components/cart/delete.html" %}</div>
+            <div>{% include "components/cart/update.html" %}</div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center" style="height: 65vh;">
+        <div class="alert d-flex flex-column gap-3 alert-danger text-center p-5" role="alert" role="alert"
+            style="max-width: 500px">
+            <h4>Cart is empty, checkout our products</h4>
+            <a href="/">Back to homepage</a>
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+{% endblock %}
