@@ -5,5 +5,26 @@
 {% endblock %}
 
 {% block body %}
-<h1>{{product}}</h1>
+<div class="container">
+    <div class="d-flex justify-content-center gap-5 align-items-center" style="height: 80vh;">
+        <div>
+            <img src="{{ product.image }}" width="600" alt="{{ product.name }}" class="img-fluid rounded-2"
+                style="max-height: 80vh;">
+        </div>
+        <div>
+            <h2>{{ product.name }}</h2>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Manufacture Date:</strong> {{ product.manufacture_date }}</p>
+            <p><strong>Expiry Date:</strong> {{ product.expiry_date }}</p>
+            <p><strong>Stock:</strong> {{ product.stock }}</p>
+            <p><strong>Sold:</strong> {{ product.sold }}</p>
+            <p><strong>Price:</strong> {{ product.price }} {{ product.rate.value }}</p>
+            <p><strong>Category:</strong> {{ product.category }}</p>
+            <p><strong>Status:</strong> {{ product.status }}</p>
+            <p><strong>Created At:</strong> {{ product.created_at }}</p>
+            <p><strong>Updated At:</strong> {{ product.updated_at }}</p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

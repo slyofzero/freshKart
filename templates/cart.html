@@ -6,18 +6,36 @@
 
 {% block body %}
 <main>
-    <h1 class="px-5 mb-4">Cart</h1>
+    <div class="d-flex justify-content-between align-items-center px-5">
+        <h1 class="mb-4">Cart</h1>
+        <div>{% include "components/buy/buy-all.html" %}</div>
+    </div>
+
+    {% if buy_error %}
+    <div class="container d-flex justify-content-center align-items-center" style="height: 65vh;">
+        <div class="alert d-flex flex-column gap-3 alert-danger text-center p-5" role="alert" role="alert"
+            style="max-width: 500px">
+            <h4>{{buy_error}}</h4>
+            <a href="/cart">Back to cart</a>
+        </div>
+    </div>
+    {% endif %}
+
     {% if carts_list|length > 0 %}
     {% for cart_data in carts_list %}
     {% set product_name, product_id, index = cart_data["product_name"], cart_data["product_id"], loop.index %}
     <div class="rounded d-flex justify-content-between align-items-center bg-light p-4 mb-3 border border-secondary"
         style="max-width: 700px; margin: 0 auto;">
-        <a href="/product/{{product_id}}">{{ product_name }}</a>
+        <a style="width: 200px;" href="/product/{{cart_data['product_id']}}">{{cart_data.quantity}}
+            {{cart_data.unit_type}} {{
+            product_name }}(s)</a>
 
         <div class="d-flex gap-3">
             <div>{% include "components/cart/delete.html" %}</div>
             <div>{% include "components/cart/update.html" %}</div>
         </div>
+
+        <div>{% include "components/buy/buy.html" %}</div>
     </div>
     {% endfor %}
     {% else %}

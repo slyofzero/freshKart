@@ -1,0 +1,46 @@
+<div data-bs-toggle="modal" data-bs-target="#buyAllModal">
+    <div data-bs-toggle="modal" data-bs-target="#buyAllModal">
+        <button class="btn btn-primary">Buy All</button>
+    </div>
+</div>
+
+<div class="modal fade" id="buyAllModal" tabindex="-1" aria-labelledby="buyAllModal" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
+        <div class="modal-content">
+            <form action="/cart/buy-all" method="post" id="cart-form"
+                class="p-4 bg-light rounded border border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="buyAllModal">
+                        Buy All
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    {% for cart_data in carts_list %}
+                    {% set product_name, product_id, index = cart_data["product_name"], cart_data["product_id"],
+                    loop.index %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 style="width: 150px;">{{cart_data.quantity}} {{cart_data.unit_type}} {{
+                            product_name }}</h5>
+                        <h5>{{cart_data["product_price"]}} {{cart_data["product_rate"]}}</h5>
+                        <h5>Rp {{cart_data["total_price"]}}</h5>
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4>Total price -</h4>
+                        <h4>{{cart_total_price}}</h4>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Buy All</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

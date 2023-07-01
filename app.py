@@ -1,6 +1,6 @@
 from flask import *
 from config import Config
-from routes import categories_bp, auth_bp, category_bp, product_bp, cart_bp
+from routes import categories_bp, auth_bp, category_bp, product_bp, cart_bp, order_bp
 from datetime import timedelta
 from models import db, Category, ProductRateTypes, Cart
 from controllers.home import home_get_controller
@@ -50,6 +50,7 @@ app.register_blueprint(categories_bp, url_prefix="/categories")
 app.register_blueprint(category_bp, url_prefix="/category")
 app.register_blueprint(product_bp, url_prefix="/product")
 app.register_blueprint(cart_bp, url_prefix="/cart")
+app.register_blueprint(order_bp, url_prefix="/orders")
 
 # Only run the app when this file is executed
 if __name__ == "__main__":

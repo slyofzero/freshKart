@@ -10,3 +10,4 @@ from .user import User
 from .category import Category
 from .product import Product, ProductRateTypes, ProductStatus
 from .cart import Cart, UnitTypes
+from .order import Order

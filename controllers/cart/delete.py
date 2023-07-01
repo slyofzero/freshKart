@@ -2,21 +2,19 @@ from flask import redirect, session
 from models import db, Cart
 
 
-def cart_delete_controller(request):
+def cart_delete_controller(cart_id, request):
     try:
-        if session["role"] != "ADMIN":
-            raise Exception(f"Only admins can create a new cart")
+        if "id" not in session:
+            raise ValueError("Login to view cart")
 
-        body = request.form.to_dict(flat=True)
-        new_cart_name = body["name"]
-
-        cart = Cart.query.filter_by(name=cart).first()
+        cart = Cart.query.filter_by(id=cart_id).first()
 
         if cart:
-            cart.name = new_cart_name
+            db.session.delete(cart)
             db.session.commit()
 
-        return redirect("/categories")
+        return redirect("/cart")
 
     except Exception as error:
+        print(error)
         return redirect("/")

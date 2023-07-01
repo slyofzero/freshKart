@@ -1,12 +1,7 @@
-<header
-  class="d-flex container-fluid justify-content-between bg-dark px-5 py-2"
->
+<header class="d-flex container-fluid justify-content-between bg-dark px-5 py-2">
   <section class="d-flex align-items-center">
     <h3 class="text-white d-flex align-items-center mb-0">
-      <a
-        href="/"
-        class="link-underline font-weight-bold link-underline-opacity-0 text-white"
-      >
+      <a href="/" class="link-underline font-weight-bold link-underline-opacity-0 text-white">
         freshKart
       </a>
     </h3>
@@ -17,20 +12,14 @@
       <ul class="navbar-nav mr-auto dflex gap-3">
         <li class="nav-item">
           <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Categories
             </button>
             <ul class="dropdown-menu">
               {% for category in categories_list %}
               <li>
-                <a class="dropdown-item" href="/category/{{category.name}}"
-                  >{{category.name}}</a
-                >
+                <a class="dropdown-item" href="/category/{{category.name}}">{{category.name}}</a>
               </li>
               {% endfor %}
             </ul>
@@ -45,12 +34,8 @@
       {% if session.name %}
       <h5 class="text-white mb-0">Hello {{session.name}}</h5>
       {% endif %} {% if user_is_logged_in %}
-      <form
-        action="/auth/logout"
-        method="post"
-        class="d-flex align-items-center gap-4"
-      >
-        <a href="/cart" class="btn btn-secondary">Cart</a>
+      <form action="/auth/logout" method="post" class="d-flex align-items-center gap-4">
+        <a href="/cart" class="btn btn-secondary">Cart</a><a href="/orders" class="btn btn-secondary">Orders</a>
         <button class="btn btn-primary">Logout</button>
       </form>
       {% else %}

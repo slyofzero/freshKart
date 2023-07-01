@@ -1,0 +1,28 @@
+<div data-bs-toggle="modal" data-bs-target="#deleteCartItem{{cart_data.id}}">
+    <div data-bs-toggle="modal" data-bs-target="#deleteCartItem{{cart_data.id}}">
+        <button class="btn btn-danger edit-btn">Remove</button>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteCartItem{{cart_data.id}}" tabindex="-1"
+    aria-labelledby="deleteCartItemLabel{{cart_data.id}}" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="height: 90vh;">
+        <div class="modal-content">
+            <form action="/cart/delete/{{cart_data.id}}" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCartItemLabel">Remove from cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <h5 class="modal-body">Do you want to remove {{cart_data.quantity}} {{cart_data.unit_type}}
+                    {{product_name}}
+                    from your cart?</h5>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

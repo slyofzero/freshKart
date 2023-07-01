@@ -1,16 +1,8 @@
-from models import db, Enum
+from models import db, Enum, UnitTypes
 from datetime import datetime
 
 
-class UnitTypes(Enum):
-    UNITS = ""  # standalone price
-    LITER = "Liters"  # rupees per litre
-    KG = "KGs"  # rupees per kg
-    G = "grams"  # rupees per gram
-    DOZEN = "dozen"  # rupees per dozen
-
-
-class Cart(db.Model):
+class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
@@ -25,4 +17,4 @@ class Cart(db.Model):
 
     # Object representation
     def __repr__(self):
-        return f"<Cart {self.id}>"
+        return f"<Order {self.user_id}>"
