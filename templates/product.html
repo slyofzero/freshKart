@@ -19,8 +19,8 @@
             <p><strong>Stock:</strong> {{ product.stock }}</p>
             <p><strong>Sold:</strong> {{ product.sold }}</p>
             <p><strong>Price:</strong> {{ product.price }} {{ product.rate.value }}</p>
-            <p><strong>Category:</strong> {{ product.category }}</p>
-            <p><strong>Status:</strong> {{ product.status }}</p>
+            <p><strong>Category:</strong> <a href="/category/{{ category.name }}">{{ category.name }}</a></p>
+            <p><strong>Status:</strong> {{ product.status.value }}</p>
             <p><strong>Created At:</strong> {{ product.created_at }}</p>
             <p><strong>Updated At:</strong> {{ product.updated_at }}</p>
         </div>
