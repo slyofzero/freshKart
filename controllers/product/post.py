@@ -24,6 +24,12 @@ def product_post_controller(request):
         rate = eval(rate)
 
         newest_product = Product.query.order_by(Product.id.desc()).first()
+
+        if newest_product:
+            new_product_id = newest_product.id + 1
+        else:
+            new_product_id = 0
+
         product_category = Category.query.filter_by(id=category).first()
 
         image = request.files["image"]
@@ -34,13 +40,8 @@ def product_post_controller(request):
 
         if image:
             filename = image.filename
-            image_path = os.path.join(upload_dir, filename)
+            image_path = os.path.join(upload_dir, f"{new_product_id}{filename}")
             image.save(image_path)
-
-        if newest_product:
-            new_product_id = newest_product.id + 1
-        else:
-            new_product_id = 0
 
         # Added a status for product on creation
         if stock == 0:
