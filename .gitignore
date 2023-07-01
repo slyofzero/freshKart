@@ -1,9 +1,0 @@
-*.env
-env/
-**/__pycache__/
-# Ignore all files and folders in static folder
-/static/*
-
-# Include the css folder
-!/static/css/
-/instance/freshkart.db
